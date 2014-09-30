@@ -3,7 +3,8 @@
 set -e
 
 #export PACKER_LOG=1
-rm packer_virtualbox-iso_virtualbox.box || true
-packer build -only virtualbox-iso packer.json
-vagrant box remove vagrant_machine || true
-vagrant box add vagrant_machine packer_virtualbox-iso_virtualbox.box
+source packer/check_packer.sh
+rm $1.box || true
+packer build -only virtualbox-iso packer/$1.json
+vagrant box remove $1 || true
+vagrant box add $1 $1.box
