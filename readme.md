@@ -3,7 +3,7 @@ this generates barebone ubuntu vagrant base boxes. this is a fork of [flomotlik/
 
 specs for vm:
 
-* Ubuntu 14.04.1 Server LTS
+* Ubuntu 14.04.1 Server LTS or Ubuntu 12.04.5 Server LTS
 * 2048MB RAM and 4 CPUs
 * 32GB disk size
 * no VirtualBox Guest Additions installed. can be installed via `vagrant-vbguest` plugin.
@@ -12,7 +12,11 @@ specs for vm:
 simply run
 
 ```
-./create_box
+./create_box ubuntu_1404
+```
+or
+```
+./create_box ubuntu_1204
 ```
 
 # directory structure
