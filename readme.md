@@ -1,22 +1,17 @@
 # ubuntu-box creation with packer
-this generates barebone ubuntu vagrant base boxes. this is a fork of [flomotlik/packer-example][1], removing non essentials.
+this generates barebone ubuntu base boxes. this is a fork of [flomotlik/packer-example][1], and highly adapted from [boxcutter/ubuntu][2], removing non essentials.
 
 specs for vm:
 
-* Ubuntu 14.04.1 Server LTS or Ubuntu 12.04.5 Server LTS
-* 2048MB RAM and 4 CPUs
-* 32GB disk size
-* no VirtualBox Guest Additions installed. can be installed via `vagrant-vbguest` plugin.
+* Ubuntu 14.04.3 Server LTS or Ubuntu 12.04.5 Server LTS
+* 2048MB RAM and 1 CPUs
+* 20GB disk size
 
 # create box
 simply run
 
 ```
-./create_box ubuntu_1404
-```
-or
-```
-./create_box ubuntu_1204
+packer build -only virtualbox-iso -var-file=ubuntu_1404_desktop.json ubuntu.json
 ```
 
 # directory structure
@@ -27,3 +22,4 @@ or
 * ```Vagrantfile``` is an example to run a machine you build.
 
 [1]: https://github.com/flomotlik/packer-example
+[2]: https://github.com/boxcutter/ubuntu
