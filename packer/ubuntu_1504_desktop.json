@@ -1,0 +1,22 @@
+{
+    "_comment": "build with `packer build -var-file=ubuntu_1504_desktop.json ubuntu.json`",
+    "accelerate3d": "on",
+    "clipboard": "bidirectional",
+    "cpus": "2",
+    "desktop": "true",
+    "docker": "true",
+    "draganddrop": "bidirectional",
+    "headless": "false",
+    "hostname": "ubuntu",
+    "iso_checksum": "487f4a81f22f8597503db3d51a1b502e",
+    "iso_name": "ubuntu-15.04-server-amd64.iso",
+    "iso_url": "http://releases.ubuntu.com/15.04/ubuntu-15.04-server-amd64.iso",
+    "memory": "8192",
+    "preseed": "preseed_desktop.cfg",
+    "ros": "true",
+    "ros_version": "jade",
+    "tools": "true",
+    "update": "true",
+    "vm_name": "ubuntu1504-desktop",
+    "vram": "128"
+}

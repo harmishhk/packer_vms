@@ -39,119 +39,80 @@
             "type": "virtualbox-iso",
             "vboxmanage": [
                 [
-                    "modifyvm", "{{.Name}}", "--memory", "{{ user `memory` }}"
+                    "modifyvm", "{{.Name}}", "--accelerate3d", "{{ user `accelerate3d` }}"
+                ],
+                [
+                    "modifyvm", "{{.Name}}", "--clipboard", "{{ user `clipboard` }}"
                 ],
                 [
                     "modifyvm", "{{.Name}}", "--cpus", "{{ user `cpus` }}"
+                ],
+                [
+                    "modifyvm", "{{.Name}}", "--draganddrop", "{{ user `draganddrop` }}"
+                ],
+                [
+                    "modifyvm", "{{.Name}}", "--memory", "{{ user `memory` }}"
+                ],
+                [
+                    "modifyvm", "{{.Name}}", "--vram", "{{ user `vram` }}"
                 ]
             ],
             "virtualbox_version_file": ".vbox_version",
             "vm_name": "{{user `vm_name`}}"
-        },
-        {
-            "boot_command": [
-                "<esc><esc><enter><wait>",
-                "/install/vmlinuz auto",
-                " console-setup/ask_detect=false",
-                " console-setup/layoutcode=us",
-                " console-setup/modelcode=pc105",
-                " debconf/frontend=noninteractive",
-                " debian-installer=en_US",
-                " fb=false",
-                " initrd=/install/initrd.gz",
-                " kbd-chooser/method=us",
-                " keyboard-configuration/layout=USA",
-                " keyboard-configuration/variant=USA",
-                " locale=en_US",
-                " netcfg/get_domain=vm",
-                " netcfg/get_hostname={{ user `hostname` }}",
-                " noapic",
-                " passwd/user-fullname={{ user `ssh_fullname` }}",
-                " passwd/user-password={{ user `ssh_password` }}",
-                " passwd/user-password-again={{ user `ssh_password` }}",
-                " passwd/username={{ user `ssh_username` }}",
-                " preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/{{ user `preseed` }}",
-                " -- ",
-                "<enter>"
-            ],
-            "disk_size": "{{ user `disk_size` }}",
-            "guest_os_type": "{{ user `vmware_guest_os_type` }}",
-            "headless": "{{ user `headless` }}",
-            "http_directory": "http",
-            "iso_checksum": "{{ user `iso_checksum` }}",
-            "iso_checksum_type": "{{ user `iso_checksum_type` }}",
-            "iso_urls": [
-                "{{ user `iso_path` }}/{{ user `iso_name` }}",
-                "{{ user `iso_url` }}"
-            ],
-            "output_directory": "output-{{ user `vm_name` }}-vmware-iso",
-            "shutdown_command": "echo '{{ user `ssh_password` }}'|sudo -S shutdown -P now",
-            "ssh_password": "{{ user `ssh_password` }}",
-            "ssh_username": "{{ user `ssh_username` }}",
-            "ssh_wait_timeout": "10000s",
-            "tools_upload_flavor": "linux",
-            "type": "vmware-iso",
-            "vm_name": "{{ user `vm_name` }}",
-            "vmx_data": {
-                "memsize": "{{ user `memory` }}",
-                "numvcpus": "{{ user `cpus` }}"
-            }
         }
     ],
     "post-processors": [
         {
-            "keep_input_artifact": true,
+            "keep_input_artifact": false,
             "output": "box/compress/{{user `vm_name`}}{{user `version`}}.zip",
             "type": "compress"
-        },
-        {
-            "keep_input_artifact": false,
-            "output": "box/{{.Provider}}/{{user `vm_name`}}{{user `version`}}.box",
-            "type": "vagrant",
-            "vagrantfile_template": "{{ user `vagrantfile_template` }}"
         }
     ],
     "provisioners": [
         {
             "environment_vars": [
+                "GUEST_ADDITIONS={{user `guest_additions`}}",
                 "DESKTOP={{user `desktop`}}",
                 "DOCKER={{user `docker`}}",
-                "UPDATE={{user `update`}}",
-                "INSTALL_VAGRANT_KEY={{user `install_vagrant_key`}}",
+                "ROS={{user `ros`}}",
+                "ROS_VERSION={{user `ros_version`}}",
                 "SSH_USERNAME={{user `ssh_username`}}",
                 "SSH_PASSWORD={{user `ssh_password`}}",
                 "TOOLS={{user `tools`}}",
+                "UPDATE={{user `update`}}",
+                "ftp_proxy={{user `ftp_proxy`}}",
                 "http_proxy={{user `http_proxy`}}",
                 "https_proxy={{user `https_proxy`}}",
-                "ftp_proxy={{user `ftp_proxy`}}",
-                "rsync_proxy={{user `rsync_proxy`}}",
-                "no_proxy={{user `no_proxy`}}"
+                "no_proxy={{user `no_proxy`}}",
+                "rsync_proxy={{user `rsync_proxy`}}"
             ],
             "execute_command": "echo '{{ user `ssh_password` }}' | {{.Vars}} sudo -E -S bash '{{.Path}}'",
             "scripts": [
                 "scripts/update.sh",
                 "scripts/desktop.sh",
-                "scripts/vagrant.sh",
-                "scripts/vmware.sh",
                 "scripts/virtualbox.sh",
                 "scripts/tools.sh",
-                "scripts/docker.sh"
+                "scripts/docker.sh",
+                "scripts/ros.sh"
             ],
             "type": "shell"
         }
     ],
     "variables": {
+        "accelerate3d": "off",
+        "clipboard": "disabled",
         "cpus": "1",
         "custom_script": ".",
         "desktop": "false",
         "disk_size": "20480",
         "docker": "false",
+        "draganddrop": "disabled",
         "ftp_proxy": "{{env `ftp_proxy`}}",
+        "guest_additions": "true",
         "headless": "true",
         "hostname": "ubuntu",
         "http_proxy": "{{env `http_proxy`}}",
         "https_proxy": "{{env `https_proxy`}}",
-        "install_vagrant_key": "true",
         "iso_checksum": "9e5fecc94b3925bededed0fdca1bd417",
         "iso_checksum_type": "md5",
         "iso_name": "ubuntu-14.04.3-server-amd64.iso",
@@ -159,17 +120,19 @@
         "iso_url": "http://releases.ubuntu.com/14.04/ubuntu-14.04.3-server-amd64.iso",
         "memory": "2048",
         "no_proxy": "{{env `no_proxy`}}",
-        "preseed" : "preseed.cfg",
+        "preseed" : "preseed_server.cfg",
         "rsync_proxy": "{{env `rsync_proxy`}}",
+        "ros": "false",
+        "ros_version": "indigo",
         "ssh_fullname": "ubuntu",
         "ssh_password": "ubuntu",
         "ssh_username": "ubuntu",
         "tools": "false",
         "update": "false",
-        "vagrantfile_template": "tpl/vagrantfile.tpl",
         "version": "",
         "virtualbox_guest_os_type": "Ubuntu_64",
         "vm_name": "ubuntu1404-server",
-        "vmware_guest_os_type": "ubuntu-64"
+        "vmware_guest_os_type": "ubuntu-64",
+        "vram": "8"
     }
 }

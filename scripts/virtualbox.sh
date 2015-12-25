@@ -1,5 +1,10 @@
 #!/bin/bash -eux
 
+if [[ ! "$GUEST_ADDITIONS" =~ ^(true|yes|on|1|TRUE|YES|ON])$ ]]; then
+    echo "==> installation of guest additions is disabled"
+    exit
+fi
+
 SSH_USER=${SSH_USERNAME:-ubuntu}
 
 if [[ $PACKER_BUILDER_TYPE =~ virtualbox ]]; then
