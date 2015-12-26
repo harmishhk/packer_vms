@@ -10,6 +10,7 @@ SSH_USER=${SSH_USERNAME:-ubuntu}
 echo "==> installing ubunutu-desktop"
 apt-get install -y ubuntu-desktop
 
+echo "==> setting-up automatic login"
 USERNAME=${SSH_USER}
 LIGHTDM_CONFIG=/etc/lightdm/lightdm.conf
 GDM_CUSTOM_CONFIG=/etc/gdm/custom.conf

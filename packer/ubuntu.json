@@ -17,6 +17,7 @@
                 "passwd/username={{ user `ssh_username` }} ",
                 "initrd=/install/initrd.gz -- <enter>"
             ],
+            "boot_wait": "6s",
             "disk_size": "{{ user `disk_size` }}",
             "floppy_files": [
                 "http/{{ user `preseed` }}"
@@ -99,28 +100,28 @@
         }
     ],
     "variables": {
-        "accelerate3d": "off",
-        "clipboard": "disabled",
+        "accelerate3d": "on",
+        "clipboard": "bidirectional",
         "cpus": "1",
         "custom_script": ".",
-        "desktop": "false",
+        "desktop": "true",
         "disk_size": "20480",
         "docker": "false",
-        "draganddrop": "disabled",
+        "draganddrop": "bidirectional",
         "ftp_proxy": "{{env `ftp_proxy`}}",
         "guest_additions": "true",
         "headless": "true",
         "hostname": "ubuntu",
         "http_proxy": "{{env `http_proxy`}}",
         "https_proxy": "{{env `https_proxy`}}",
-        "iso_checksum": "9e5fecc94b3925bededed0fdca1bd417",
+        "iso_checksum": "ece816e12f97018fa3d4974b5fd27337",
         "iso_checksum_type": "md5",
-        "iso_name": "ubuntu-14.04.3-server-amd64.iso",
-        "iso_path": "~/Downloads",
-        "iso_url": "http://releases.ubuntu.com/14.04/ubuntu-14.04.3-server-amd64.iso",
+        "iso_name": "ubuntu-15.10-desktop-amd64.iso",
+        "iso_path": ".",
+        "iso_url": "http://releases.ubuntu.com/15.10/ubuntu-15.10-desktop-amd64.iso",
         "memory": "2048",
         "no_proxy": "{{env `no_proxy`}}",
-        "preseed" : "preseed_server.cfg",
+        "preseed" : "preseed.cfg",
         "rsync_proxy": "{{env `rsync_proxy`}}",
         "ros": "false",
         "ros_version": "indigo",
@@ -128,11 +129,11 @@
         "ssh_password": "ubuntu",
         "ssh_username": "ubuntu",
         "tools": "false",
-        "update": "false",
+        "update": "true",
         "version": "",
         "virtualbox_guest_os_type": "Ubuntu_64",
         "vm_name": "ubuntu1404-server",
         "vmware_guest_os_type": "ubuntu-64",
-        "vram": "8"
+        "vram": "128"
     }
 }

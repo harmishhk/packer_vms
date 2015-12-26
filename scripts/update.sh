@@ -10,7 +10,8 @@ fi
 
 echo "==> performing dist-upgrade (all packages and kernel)"
     apt-get -y update
-    apt-get -y dist-upgrade --force-yes
+#    apt-get -y dist-upgrade --force-yes
+    apt-get -y dist-upgrade
     reboot
     sleep 60
 fi
