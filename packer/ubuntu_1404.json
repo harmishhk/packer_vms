@@ -1,7 +1,8 @@
 {
-    "_comment": "build with `packer build -var-file=ubuntu_1404_desktop.json ubuntu.json`",
+    "_comment": "build with `packer build -var-file=ubuntu_1404.json ubuntu.json`",
     "cpus": "2",
-    "docker": "true",
+    "docker": "false",
+    "headless": "true",
     "hostname": "ubuntu",
     "iso_checksum": "9e5fecc94b3925bededed0fdca1bd417",
     "iso_name": "ubuntu-14.04.3-server-amd64.iso",
@@ -9,6 +10,8 @@
     "memory": "8192",
     "ros": "true",
     "ros_version": "indigo",
-    "tools": "true",
-    "vm_name": "ubuntu1404-desktop",
+    "ssh_fullname": "ubuntu",
+    "ssh_password": "ubuntu",
+    "ssh_username": "ubuntu",
+    "vm_name": "ubuntu1404-desktop"
 }

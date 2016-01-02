@@ -1,7 +1,7 @@
 #!/bin/bash -eux
 
 echo "==> disabling the release upgrader"
-sed -i.bak 's/^Prompt=.*$/Prompt=never/' /etc/update-manager/release-upgrades
+sudo sed -i.bak 's/^Prompt=.*$/Prompt=never/' /etc/update-manager/release-upgrades
 
 if [[ ! "$UPDATE" =~ ^(true|yes|on|1|TRUE|YES|ON])$ ]]; then
     echo "==> updating is disabled"
@@ -9,9 +9,9 @@ if [[ ! "$UPDATE" =~ ^(true|yes|on|1|TRUE|YES|ON])$ ]]; then
 fi
 
 echo "==> performing dist-upgrade (all packages and kernel)"
-    apt-get -y update
+    sudo apt-get -y update
 #    apt-get -y dist-upgrade --force-yes
-    apt-get -y dist-upgrade
-    reboot
+    sudo apt-get -y dist-upgrade
+    sudo reboot
     sleep 60
 fi

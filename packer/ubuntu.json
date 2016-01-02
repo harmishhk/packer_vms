@@ -22,6 +22,7 @@
             "floppy_files": [
                 "http/{{ user `preseed` }}"
             ],
+            "format": "ovf",
             "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
             "guest_os_type": "{{ user `virtualbox_guest_os_type` }}",
             "hard_drive_interface": "sata",
@@ -32,7 +33,7 @@
                 "{{ user `iso_path` }}/{{ user `iso_name` }}",
                 "{{ user `iso_url` }}"
             ],
-            "output_directory": "output-{{ user `vm_name` }}-virtualbox-iso",
+            "output_directory": "output/{{ user `vm_name` }}",
             "shutdown_command": "echo '{{ user `ssh_password` }}'|sudo -S shutdown -P now",
             "ssh_password": "{{ user `ssh_password` }}",
             "ssh_username": "{{ user `ssh_username` }}",
@@ -55,6 +56,9 @@
                     "modifyvm", "{{.Name}}", "--memory", "{{ user `memory` }}"
                 ],
                 [
+                    "modifyvm", "{{.Name}}", "--natpf1", "ssh,tcp,,{{ user `ssh_port` }},,22"
+                ],
+                [
                     "modifyvm", "{{.Name}}", "--vram", "{{ user `vram` }}"
                 ]
             ],
@@ -62,39 +66,20 @@
             "vm_name": "{{user `vm_name`}}"
         }
     ],
-    "post-processors": [
-        {
-            "keep_input_artifact": false,
-            "output": "box/compress/{{user `vm_name`}}{{user `version`}}.zip",
-            "type": "compress"
-        }
-    ],
     "provisioners": [
         {
             "environment_vars": [
-                "GUEST_ADDITIONS={{user `guest_additions`}}",
                 "DESKTOP={{user `desktop`}}",
-                "DOCKER={{user `docker`}}",
-                "ROS={{user `ros`}}",
-                "ROS_VERSION={{user `ros_version`}}",
+                "GUEST_ADDITIONS={{user `guest_additions`}}",
                 "SSH_USERNAME={{user `ssh_username`}}",
                 "SSH_PASSWORD={{user `ssh_password`}}",
-                "TOOLS={{user `tools`}}",
-                "UPDATE={{user `update`}}",
-                "ftp_proxy={{user `ftp_proxy`}}",
-                "http_proxy={{user `http_proxy`}}",
-                "https_proxy={{user `https_proxy`}}",
-                "no_proxy={{user `no_proxy`}}",
-                "rsync_proxy={{user `rsync_proxy`}}"
+                "UPDATE={{user `update`}}"
             ],
-            "execute_command": "echo '{{ user `ssh_password` }}' | {{.Vars}} sudo -E -S bash '{{.Path}}'",
+            "execute_command": "sed 's/sudo/echo {{ user `ssh_password` }} | sudo -E -S/g' {{.Path}} | {{.Vars}} bash",
             "scripts": [
                 "scripts/update.sh",
                 "scripts/desktop.sh",
-                "scripts/virtualbox.sh",
-                "scripts/tools.sh",
-                "scripts/docker.sh",
-                "scripts/ros.sh"
+                "scripts/virtualbox.sh"
             ],
             "type": "shell"
         }
@@ -106,33 +91,25 @@
         "custom_script": ".",
         "desktop": "true",
         "disk_size": "20480",
-        "docker": "false",
         "draganddrop": "bidirectional",
-        "ftp_proxy": "{{env `ftp_proxy`}}",
         "guest_additions": "true",
         "headless": "true",
         "hostname": "ubuntu",
-        "http_proxy": "{{env `http_proxy`}}",
-        "https_proxy": "{{env `https_proxy`}}",
         "iso_checksum": "ece816e12f97018fa3d4974b5fd27337",
         "iso_checksum_type": "md5",
         "iso_name": "ubuntu-15.10-desktop-amd64.iso",
         "iso_path": ".",
         "iso_url": "http://releases.ubuntu.com/15.10/ubuntu-15.10-desktop-amd64.iso",
         "memory": "2048",
-        "no_proxy": "{{env `no_proxy`}}",
         "preseed" : "preseed.cfg",
-        "rsync_proxy": "{{env `rsync_proxy`}}",
-        "ros": "false",
-        "ros_version": "indigo",
         "ssh_fullname": "ubuntu",
         "ssh_password": "ubuntu",
+        "ssh_port": "3022",
         "ssh_username": "ubuntu",
-        "tools": "false",
         "update": "true",
         "version": "",
         "virtualbox_guest_os_type": "Ubuntu_64",
-        "vm_name": "ubuntu1404-server",
+        "vm_name": "ubuntu1510-desktop",
         "vmware_guest_os_type": "ubuntu-64",
         "vram": "128"
     }
