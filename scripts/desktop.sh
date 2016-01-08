@@ -9,9 +9,10 @@ echo "==> installing ubunutu-desktop (this may take a long time)"
 sudo apt-get -y -qq install ubuntu-desktop
 
 echo "==> setting-up automatic login"
-sudo mkdir -p /etc/lightdm
-sudo sh -c "echo '[SeatDefaults]' >> /etc/lightdm/lightdm.conf"
-sudo sh -c "echo 'autologin-user=$SSH_USERNAME' >> /etc/lightdm/lightdm.conf"
+LIGHTDM_CUSTOM_CONF=/etc/lightdm/lightdm.conf
+sudo mkdir -p $(dirname $LIGHTDM_CUSTOM_CONF)
+sudo sh -c "echo '[SeatDefaults]' >> $LIGHTDM_CUSTOM_CONF"
+sudo sh -c "echo 'autologin-user=$SSH_USERNAME' >> $LIGHTDM_CUSTOM_CONF"
 
 # GDM_CUSTOM_CONFIG=/etc/gdm/custom.conf
 # sudo mkdir -p $(dirname $GDM_CUSTOM_CONFIG)

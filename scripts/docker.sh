@@ -47,3 +47,8 @@ sudo update-grub
 if [[ "$UBUNTU_MAJOR_VERSION" -gt "14" ]]; then
     sudo systemctl enable docker
 fi
+
+# chagne storage location for docker images
+mkdir /home/$SSH_USERNAME/.docker-graph
+sudo sh -c "echo DOCKER_OPTS=\"-g /home/$SSH_USERNAME/.docker-graph\" >> /etc/default/docker"
+#sudo sh -c "echo '/dev/sdc /home/$SSH_USERNAME/.docker-graph auto defaults 0 0' >> /etc/fstab"

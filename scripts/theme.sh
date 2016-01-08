@@ -19,19 +19,38 @@ wget -O /home/$SSH_USERNAME/.fonts/selawik.zip https://github.com/Microsoft/Sela
 unzip -d /home/$SSH_USERNAME/.fonts /home/$SSH_USERNAME/.fonts/selawik.zip
 file /home/$SSH_USERNAME/.fonts/* | grep -vi 'ttf\|otf' | cut -d: -f1 | tr '\n' '\0' | xargs -0 rm
 sudo fc-cache -f -v
+echo "gsettings set org.gnome.desktop.interface font-name 'Selawik 9'" >> /home/$SSH_USERNAME/.xprofile
+echo "gsettings set org.gnome.desktop.interface monospace-font-name 'Inconsolata Medium 12'" >> /home/$SSH_USERNAME/.xprofile
 
 # gtk theme
 echo "==> installing numix theme"
 sudo add-apt-repository -y ppa:numix/ppa
 sudo apt-get update
 sudo apt-get -y install gnome-settings-daemon lxappearance numix-gtk-theme numix-icon-theme-circle
-#dbus-launch --exit-with-session gsettings set org.gnome.desktop.interface gtk-theme 'Numix'
-#dbus-launch --exit-with-session gsettings set org.gnome.desktop.wm.preferences theme 'Numix'
-#dbus-launch --exit-with-session gsettings set org.gnome.desktop.interface icon-theme 'Numix-Circle'
-#gconftool-2 --type=string --set /desktop/gnome/interface/gtk_theme 'Numix'
+echo "gsettings set org.gnome.desktop.interface gtk-theme 'Numix'" >> /home/$SSH_USERNAME/.xprofile
+echo "gsettings set org.gnome.desktop.wm.preferences theme 'Numix'" >> /home/$SSH_USERNAME/.xprofile
+echo "gsettings set org.gnome.desktop.interface icon-theme 'Numix-Circle'" >> /home/$SSH_USERNAME/.xprofile
+echo "gconftool-2 --type=string --set /desktop/gnome/interface/gtk_theme 'Numix'" >> /home/$SSH_USERNAME/.xprofile
+echo "gsettings set org.gnome.settings-daemon.plugins.cursor active false" >> /home/$SSH_USERNAME/.xprofile
 
 # wallpaper
 echo "==> setting-up bing wallpaper"
 sudo apt-get -y install curl nitrogen gawk
 git clone https://github.com/harmishhk/bing-wallpaper /home/$SSH_USERNAME/software/bing-wallpaper
 sh /home/$SSH_USERNAME/software/bing-wallpaper/setup.sh /home/$SSH_USERNAME/software/bing-wallpaper
+echo "/home/$SSH_USERNAME/software/bing-wallpaper/bing-wallpaper.sh 2>&1 > /dev/null" >> /home/$SSH_USERNAME/.xprofile
+
+# terminal emulator
+ROXTERM_PROFILE=/home/$SSH_USERNAME/.config/roxterm.sourceforge.net/Profiles/Default
+mkdir -p $(dirname $ROXTERM_PROFILE)
+echo "[roxterm profile]" >> $ROXTERM_PROFILE
+echo "colour_scheme=Tango" >> $ROXTERM_PROFILE
+echo "font=Inconsolata Medium 12" >> $ROXTERM_PROFILE
+echo "always_show_tabs=0" >> $ROXTERM_PROFILE
+echo "hide_menubar=1" >> $ROXTERM_PROFILE
+echo "show_resize_grip=1" >> $ROXTERM_PROFILE
+echo "win_title=Terminal" >> $ROXTERM_PROFILE
+echo "background_type=0" >> $ROXTERM_PROFILE
+echo "saturation=0.000000" >> $ROXTERM_PROFILE
+echo "login_shell=1" >> $ROXTERM_PROFILE
+echo "scroll_on_keystroke=1" >> $ROXTERM_PROFILE

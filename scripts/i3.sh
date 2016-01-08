@@ -8,9 +8,10 @@ fi
 # install i3 window manager
 echo "==> installing i3 window manager"
 sudo apt-get -y install i3
-sudo mkdir -p /etc/lightdm/lightdm.conf.d
-sudo sh -c "echo '[SeatDefaults]' >> /etc/lightdm/lightdm.conf.d/50-i3.conf"
-sudo sh -c "echo 'user-session=i3' >> /etc/lightdm/lightdm.conf.d/50-i3.conf"
+I3_LIGHTDM_CONF=/etc/lightdm/lightdm.conf.d/50-i3.conf
+sudo mkdir -p $(dirname $I3_LIGHTDM_CONF)
+sudo sh -c "echo '[SeatDefaults]' >> $I3_LIGHTDM_CONF"
+sudo sh -c "echo 'user-session=i3' >> $I3_LIGHTDM_CONF"
 
 # i3blocks for i3wm
 echo "==> installing i3bocks for better i3 status bar"

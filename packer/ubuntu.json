@@ -90,7 +90,7 @@
         "cpus": "1",
         "custom_script": ".",
         "desktop": "true",
-        "disk_size": "20480",
+        "disk_size": "28672",
         "draganddrop": "bidirectional",
         "guest_additions": "true",
         "headless": "true",
@@ -110,7 +110,6 @@
         "version": "",
         "virtualbox_guest_os_type": "Ubuntu_64",
         "vm_name": "ubuntu1510-desktop",
-        "vmware_guest_os_type": "ubuntu-64",
-        "vram": "128"
+        "vram": "256"
     }
 }

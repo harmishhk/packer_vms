@@ -10,6 +10,7 @@
     "memory": "8192",
     "ros": "true",
     "ros_version": "indigo",
+    "spencer": "false",
     "ssh_fullname": "ubuntu",
     "ssh_password": "ubuntu",
     "ssh_username": "ubuntu",
