@@ -9,7 +9,7 @@ echo "==> installing ros $ROS_VERSION"
 
 # setup source-list and keys
 sudo sh -c "echo 'deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main' > /etc/apt/sources.list.d/ros-latest.list"
-sudo apt-key adv --keyserver hkp://pool.sks-keyservers.net:80 --recv-key 0xB01FA116
+sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-key 0xB01FA116
 sudo apt-get update --fix-missing
 
 # install ros-indigo-base
