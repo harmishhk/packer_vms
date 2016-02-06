@@ -2,6 +2,7 @@
     "_comment": "build with `packer build -var-file=ubuntu_1404.json ubuntu.json`",
     "cpus": "2",
     "docker": "false",
+    "gazebo": "false",
     "headless": "true",
     "hostname": "ubuntu",
     "iso_checksum": "9e5fecc94b3925bededed0fdca1bd417",
