@@ -1,7 +1,7 @@
 {
     "_comment": "build with `packer build -var-file=ubuntu_1504.json ubuntu.json`",
     "cpus": "2",
-    "docker": "true",
+    "docker": "false",
     "headless": "true",
     "hostname": "ubuntu",
     "iso_checksum": "487f4a81f22f8597503db3d51a1b502e",

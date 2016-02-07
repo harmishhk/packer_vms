@@ -14,11 +14,12 @@ mkdir /home/$SSH_USERNAME/work
 ln -s /home/$SSH_USERNAME/work/ros /home/$SSH_USERNAME/ros
 
 # add fstab entry
-sudo sh -c "echo '/dev/sdb /home/$SSH_USERNAME/work auto defaults 0 0' >> /etc/fstab"
+sudo sh -c "echo '/dev/sdb /mnt/work_vdisk auto defaults 0 0' >> /etc/fstab"
+ln -s /mnt/work_vdisk/work /home/$SSH_USERNAME/work
 
 if [[ "$DOCKER" =~ ^(true|yes|on|1|TRUE|YES|ON])$ ]]; then
     # chagne storage location for docker images
-    mkdir /home/$SSH_USERNAME/.docker-graph
+    sudo sh -c "echo '/dev/sdc /mnt/docker_vdisk auto defaults 0 0' >> /etc/fstab"
+    ln -s /mnt/docker_vdisk/docker-graph /home/$SSH_USERNAME/.docker-graph
     sudo sh -c "echo 'DOCKER_OPTS=\"-g /home/$SSH_USERNAME/.docker-graph\"' >> /etc/default/docker"
-    sudo sh -c "echo '/dev/sdc /home/$SSH_USERNAME/.docker-graph auto defaults 0 0' >> /etc/fstab"
 fi

@@ -3,7 +3,13 @@
     "builders": [
         {
             "boot_command": [
-                "<esc><esc><enter><wait>",
+                "<enter><wait><f6><esc>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
                 "/install/vmlinuz noapic ",
                 "file=/floppy/{{ user `preseed` }} ",
                 "debian-installer=en_US auto locale=en_US kbd-chooser/method=us ",
