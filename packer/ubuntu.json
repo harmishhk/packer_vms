@@ -96,7 +96,7 @@
         "cpus": "1",
         "custom_script": ".",
         "desktop": "true",
-        "disk_size": "28672",
+        "disk_size": "49152",
         "draganddrop": "bidirectional",
         "guest_additions": "true",
         "headless": "true",

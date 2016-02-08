@@ -4,7 +4,7 @@ templates for generating ubuntu desktop boxes. this is a fork of [flomotlik/pack
 specs for vm:
 
 * 8092MB RAM and 2 CPUs
-* 20GB disk size
+* 40GB disk size
 * 256MB of vram
 
 # create box
