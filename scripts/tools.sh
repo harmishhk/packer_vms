@@ -9,11 +9,15 @@ fi
 echo "==> installing basic tools"
 sudo apt-get -y install htop roxterm tmux tree vim wget
 
-# install git
+# install git and git-lfs
 echo "==> installing git and related tools"
 sudo add-apt-repository -y ppa:git-core/ppa
 sudo apt-get update
 sudo apt-get -y install git gitk meld tig git-gui
+curl -s -o /tmp/git-lfs.sh https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh
+sudo bash /tmp/git-lfs.sh
+sudo apt-get install git-lfs
+git lfs install
 
 # install atom editor
 wget -O /tmp/atom.deb atom.deb https://atom.io/download/deb

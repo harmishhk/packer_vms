@@ -15,6 +15,7 @@ source /home/$SSH_USERNAME/dotfiles/install.sh
 sudo sh -c "echo '/dev/sdb /mnt/work_vdisk auto defaults 0 0' >> /etc/fstab"
 ln -s /mnt/work_vdisk/work /home/$SSH_USERNAME/work
 ln -s /home/$SSH_USERNAME/work/ros /home/$SSH_USERNAME/ros
+ln -s /home/$SSH_USERNAME/work/writing /home/$SSH_USERNAME/writing
 
 #enable user-namespace remapping in docker
 if [[ "$DOCKER" =~ ^(true|yes|on|1|TRUE|YES|ON])$ ]]; then
