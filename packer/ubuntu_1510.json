@@ -9,5 +9,8 @@
     "iso_url": "http://releases.ubuntu.com/15.10/ubuntu-15.10-server-amd64.iso",
     "memory": "8192",
     "ros": "false",
+    "ssh_fullname": "ubuntu",
+    "ssh_password": "ubuntu",
+    "ssh_username": "ubuntu",
     "vm_name": "ubuntu1510-desktop"
 }
