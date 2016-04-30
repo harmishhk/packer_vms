@@ -6,7 +6,7 @@ if [[ ! "$DESKTOP" =~ ^(true|yes|on|1|TRUE|YES|ON])$ ]]; then
 fi
 
 echo "==> installing ubunutu-desktop (this may take a long time)"
-sudo apt-get -y -qq install ubuntu-desktop
+sudo apt-get -y install --no-install-recommends ubuntu-desktop
 
 echo "==> setting-up automatic login"
 LIGHTDM_CUSTOM_CONF=/etc/lightdm/lightdm.conf

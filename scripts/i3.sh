@@ -24,9 +24,9 @@ cp /tmp/i3blocks/scripts/* /home/$SSH_USERNAME/.config/i3blocks/scripts
 
 # rofi for i3wm
 echo "==> installing rofi for better dmenu"
-sudo apt-get -y install compton wget
+sudo apt-get -y install compton wget gdebi
 wget -O /tmp/rofi.deb https://launchpad.net/ubuntu/+archive/primary/+files/rofi_0.15.11-1_amd64.deb
-sudo dpkg -i /tmp/rofi.deb
+sudo gdebi -n /tmp/rofi.deb
 
 # other i3 related tools
 sudo apt-get -y install arandr lxappearance thunar
