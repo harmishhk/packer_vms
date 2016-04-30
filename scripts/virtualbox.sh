@@ -1,12 +1,15 @@
 #!/bin/bash -eux
 
+LOGFILE=$HOME/summary.txt
+touch $LOGFILE
+
 if [[ ! "$GUEST_ADDITIONS" =~ ^(true|yes|on|1|TRUE|YES|ON])$ ]]; then
-    echo "==> installation of guest additions is disabled"
+    echo "==> installation of guest additions is disabled" 2>&1 | tee -a $LOGFILE
     exit
 fi
 
 if [[ $PACKER_BUILDER_TYPE =~ virtualbox ]]; then
-    echo "==> installing VirtualBox guest additions"
+    echo "==> installing VirtualBox guest additions" 2>&1 | tee -a $LOGFILE
 
     sudo apt-get -y install linux-headers-$(uname -r)
 

@@ -1,12 +1,15 @@
 #!/bin/bash -eux
 
+LOGFILE=$HOME/summary.txt
+touch $LOGFILE
+
 if [[ ! "$THEME" =~ ^(true|yes|on|1|TRUE|YES|ON])$ ]]; then
-    echo "==> theming is disabled"
+    echo "==> theming is disabled" 2>&1 | tee -a $LOGFILE
     exit
 fi
 
 # font set-up
-echo "==> installing and setting up fonts"
+echo "==> installing and setting up fonts" 2>&1 | tee -a $LOGFILE
 sudo add-apt-repository ppa:no1wantdthisname/ppa
 sudo apt-get update # && apt-get upgrade
 sudo apt-get -y install fontconfig-infinality wget
@@ -23,7 +26,7 @@ echo "gsettings set org.gnome.desktop.interface font-name 'Selawik 9'" >> /home/
 echo "gsettings set org.gnome.desktop.interface monospace-font-name 'Inconsolata Medium 12'" >> /home/$SSH_USERNAME/.xprofile
 
 # gtk theme
-echo "==> installing numix theme"
+echo "==> installing numix theme" 2>&1 | tee -a $LOGFILE
 sudo add-apt-repository -y ppa:numix/ppa
 sudo apt-get update
 sudo apt-get -y install gnome-settings-daemon lxappearance numix-gtk-theme numix-icon-theme-circle
@@ -34,13 +37,14 @@ echo "gconftool-2 --type=string --set /desktop/gnome/interface/gtk_theme 'Numix'
 echo "gsettings set org.gnome.settings-daemon.plugins.cursor active false" >> /home/$SSH_USERNAME/.xprofile
 
 # wallpaper
-echo "==> setting-up bing wallpaper"
+echo "==> setting-up bing wallpaper" 2>&1 | tee -a $LOGFILE
 sudo apt-get -y install curl nitrogen gawk
 git clone https://github.com/harmishhk/bing-wallpaper /home/$SSH_USERNAME/software/bing-wallpaper
 sh /home/$SSH_USERNAME/software/bing-wallpaper/setup.sh /home/$SSH_USERNAME/software/bing-wallpaper
 echo "/home/$SSH_USERNAME/software/bing-wallpaper/bing-wallpaper.sh 2>&1 > /dev/null" >> /home/$SSH_USERNAME/.xprofile
 
 # terminal emulator
+echo "==> setting-up terminal emulator theme" 2>&1 | tee -a $LOGFILE
 ROXTERM_PROFILE=/home/$SSH_USERNAME/.config/roxterm.sourceforge.net/Profiles/Default
 mkdir -p $(dirname $ROXTERM_PROFILE)
 echo "[roxterm profile]" >> $ROXTERM_PROFILE

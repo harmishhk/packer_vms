@@ -1,14 +1,17 @@
 #!/bin/bash -eux
 
+LOGFILE=$HOME/summary.txt
+touch $LOGFILE
+
 if [[ ! "$DESKTOP" =~ ^(true|yes|on|1|TRUE|YES|ON])$ ]]; then
-    echo "==> ubuntu-desktop installation is disabled"
+    echo "==> ubuntu-desktop installation is disabled" 2>&1 | tee -a $LOGFILE
     exit
 fi
 
-echo "==> installing ubunutu-desktop (this may take a long time)"
+echo "==> installing ubunutu-desktop (this may take a long time)" 2>&1 | tee -a $LOGFILE
 sudo apt-get -y install --no-install-recommends ubuntu-desktop
 
-echo "==> setting-up automatic login"
+echo "==> setting-up automatic login" 2>&1 | tee -a $LOGFILE
 LIGHTDM_CUSTOM_CONF=/etc/lightdm/lightdm.conf
 sudo mkdir -p $(dirname $LIGHTDM_CUSTOM_CONF)
 sudo sh -c "echo '[SeatDefaults]' >> $LIGHTDM_CUSTOM_CONF"

@@ -1,23 +1,29 @@
 #!/bin/bash -eux
 
+LOGFILE=$HOME/summary.txt
+touch $LOGFILE
+
 if [[ ! "$DEV" =~ ^(true|yes|on|1|TRUE|YES|ON])$ ]]; then
-    echo "==> dotfiles installation is disabled"
+    echo "==> dotfiles installation is disabled" 2>&1 | tee -a $LOGFILE
     exit
 fi
 
 UBUNTU_MAJOR_VERSION=$(lsb_release -rs | cut -f1 -d .)
 
 # install dotfiles
+echo "==> installing dotfiles" 2>&1 | tee -a $LOGFILE
 git clone https://github.com/harmishhk/dotfiles /home/$SSH_USERNAME/dotfiles
 source /home/$SSH_USERNAME/dotfiles/install.sh
 
 # add fstab entry for work_vdisk, and related symlinks
+echo "==> adding fstab entry for work_vdisk and symlinking" 2>&1 | tee -a $LOGFILE
 sudo sh -c "echo '/dev/sdb /mnt/work_vdisk auto defaults 0 0' >> /etc/fstab"
 ln -s /mnt/work_vdisk/work /home/$SSH_USERNAME/work
 ln -s /home/$SSH_USERNAME/work/ros /home/$SSH_USERNAME/ros
 ln -s /home/$SSH_USERNAME/work/writing /home/$SSH_USERNAME/writing
 
 #enable user-namespace remapping in docker
+echo "==> enabling user-namespace remapping for docker" 2>&1 | tee -a $LOGFILE
 if [[ "$DOCKER" =~ ^(true|yes|on|1|TRUE|YES|ON])$ ]]; then
     if [[ "$UBUNTU_MAJOR_VERSION" -gt "14" ]]; then
         sudo cp /lib/systemd/system/docker.service /etc/systemd/system/

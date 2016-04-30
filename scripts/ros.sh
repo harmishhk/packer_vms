@@ -1,11 +1,14 @@
 #!/bin/bash -eux
 
+LOGFILE=$HOME/summary.txt
+touch $LOGFILE
+
 if [[ ! "$ROS" =~ ^(true|yes|on|1|TRUE|YES|ON])$ ]]; then
-    echo "==> ros installation is disabled"
+    echo "==> ros installation is disabled" 2>&1 | tee -a $LOGFILE
     exit
 fi
 
-echo "==> installing ros $ROS_VERSION"
+echo "==> installing ros $ROS_VERSION" 2>&1 | tee -a $LOGFILE
 
 # setup source-list and keys
 sudo sh -c "echo 'deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main' > /etc/apt/sources.list.d/ros-latest.list"
@@ -24,9 +27,9 @@ sudo rosdep init
 rosdep update
 
 if [[ ! "$SPENCER" =~ ^(true|yes|on|1|TRUE|YES|ON])$ ]]; then
-    echo "==> ros-spencer installation is disabled"
+    echo "==> ros-spencer installation is disabled" 2>&1 | tee -a $LOGFILE
 else
-    echo "==> installing spencer related packages for ros $ROS_VERSION"
+    echo "==> installing spencer related packages for ros $ROS_VERSION" 2>&1 | tee -a $LOGFILE
 
     sudo apt-get -y install \
     libmrpt-dev \
@@ -45,13 +48,12 @@ else
 fi
 
 if [[ ! "$GAZEBO" =~ ^(true|yes|on|1|TRUE|YES|ON])$ ]]; then
-    echo "==> ros-gazebo installation is disabled"
+    echo "==> ros-gazebo installation is disabled" 2>&1 | tee -a $LOGFILE
 else
-    echo "==> installing gazebo and related packages for ros $ROS_VERSION"
+    echo "==> installing gazebo and related packages for ros $ROS_VERSION" 2>&1 | tee -a $LOGFILE
 
     # install dependencies
-    sudo apt-get -y install \
-        wget
+    sudo apt-get -y install wget
 
     # setup source-list and keys
     sudo sh -c "echo 'deb http://packages.osrfoundation.org/gazebo/ubuntu-stable $(lsb_release -cs) main' > /etc/apt/sources.list.d/gazebo-stable.list"

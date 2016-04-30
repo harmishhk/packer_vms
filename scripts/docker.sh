@@ -1,7 +1,10 @@
 #!/bin/bash -eux
 
+LOGFILE=$HOME/summary.txt
+touch $LOGFILE
+
 if [[ ! "$DOCKER" =~ ^(true|yes|on|1|TRUE|YES|ON])$ ]]; then
-    echo "==> docker installation is disabled"
+    echo "==> docker installation is disabled" 2>&1 | tee -a $LOGFILE
     exit
 fi
 
@@ -22,11 +25,12 @@ elif [[ "$UBUNTU_VERSION" =~ "15.04" ]]; then
 elif [[ "$UBUNTU_VERSION" =~ "15.10" ]]; then
     sudo sh -c "echo 'deb https://apt.dockerproject.org/repo ubuntu-wily main' >> /etc/apt/sources.list.d/docker.list"
 else
-    echo "==> docker will not be installed for this ($UBUNTU_VERSION) version of ubuntu"
+    echo "==> docker will not be installed for this ($UBUNTU_VERSION) version of ubuntu" 2>&1 | tee -a $LOGFILE
     exit
 fi
 
 # install docker
+echo "==> installing docker engine" 2>&1 | tee -a $LOGFILE
 sudo apt-get update
 sudo apt-get -y install docker-engine
 sudo service docker start
@@ -43,7 +47,7 @@ docker run hello-world
 sudo sed -i 's/GRUB_CMDLINE_LINUX=""/GRUB_CMDLINE_LINUX="cgroup_enable=memory swapaccount=1"/' /etc/default/grub
 sudo update-grub
 
-# requirement for autostart on ubuntu version greater than 15.04
+# requirement for autostart on ubuntu version greater than 14.10
 if [[ "$UBUNTU_MAJOR_VERSION" -gt "14" ]]; then
     sudo systemctl enable docker
 fi

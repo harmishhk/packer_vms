@@ -85,9 +85,11 @@
             "scripts": [
                 "scripts/update.sh",
                 "scripts/desktop.sh",
-                "scripts/virtualbox.sh"
+                "scripts/virtualbox.sh",
+                "scripts/summary.sh"
             ],
-            "type": "shell"
+            "type": "shell",
+            "pause_before": "4s"
         }
     ],
     "variables": {

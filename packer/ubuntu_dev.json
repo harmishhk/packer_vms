@@ -38,9 +38,11 @@
                 "scripts/theme.sh",
                 "scripts/docker.sh",
                 "scripts/ros.sh",
-                "scripts/dev.sh"
+                "scripts/dev.sh",
+                "scripts/summary.sh"
             ],
-            "type": "shell"
+            "type": "shell",
+            "pause_before": "4s"
         }
     ],
     "variables": {
