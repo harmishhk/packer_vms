@@ -29,6 +29,10 @@ echo "    _analyticsUserId: \"AnonymousId\"" >> /home/$SSH_USERNAME/.atom/config
 echo "    personalAccessToken: \""$ATOM_SYNC_SETTINGS_PERSONAL_ACCESS_TOKEN"\"" >> /home/$SSH_USERNAME/.atom/config.cson
 echo "    gistId: \""$ATOM_SYNC_SETTINGS_GIST_ID"\"" >> /home/$SSH_USERNAME/.atom/config.cson
 
+# install vs-code
+wget -O /tmp/vscode.deb "https://go.microsoft.com/fwlink/?LinkID=760868"
+sudo gdebi -n /tmp/vscode.deb
+
 # install image tools
 echo "==> installing image tools"
 sudo apt-get -y install gimp inkscape
