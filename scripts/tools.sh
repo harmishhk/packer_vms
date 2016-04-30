@@ -29,6 +29,10 @@ echo "    _analyticsUserId: \"AnonymousId\"" >> /home/$SSH_USERNAME/.atom/config
 echo "    personalAccessToken: \""$ATOM_SYNC_SETTINGS_PERSONAL_ACCESS_TOKEN"\"" >> /home/$SSH_USERNAME/.atom/config.cson
 echo "    gistId: \""$ATOM_SYNC_SETTINGS_GIST_ID"\"" >> /home/$SSH_USERNAME/.atom/config.cson
 
+# install image tools
+echo "==> installing image tools"
+sudo apt-get -y install gimp inkscape
+
 # install and setup zsh
 echo "==> installing and setting-up z-shell"
 sudo apt-get -y install zsh
