@@ -1,19 +1,10 @@
 {
     "_comment": "build with `packer build -var-file=ubuntu_1404.json ubuntu.json`",
-    "cpus": "2",
-    "docker": "false",
-    "gazebo": "false",
-    "headless": "true",
-    "hostname": "ubuntu",
+    "docker": "true",
     "iso_checksum": "2ac1f3e0de626e54d05065d6f549fa3a",
     "iso_name": "ubuntu-14.04.4-server-amd64.iso",
     "iso_url": "http://releases.ubuntu.com/14.04/ubuntu-14.04.4-server-amd64.iso",
-    "memory": "8192",
     "ros": "true",
     "ros_version": "indigo",
-    "spencer": "false",
-    "ssh_fullname": "ubuntu",
-    "ssh_password": "ubuntu",
-    "ssh_username": "ubuntu",
     "vm_name": "ubuntu1404-desktop"
 }
