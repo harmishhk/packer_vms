@@ -63,8 +63,8 @@ else
 
     # install gazebo
     sudo apt-get -y install \
-        ros-$ROS_VERSION-gazebo6-ros-pkgs \
-        ros-$ROS_VERSION-gazebo6-ros-control
+        ros-$ROS_VERSION-gazebo7-ros-pkgs \
+        ros-$ROS_VERSION-gazebo7-ros-control
 
     # install pr2 simulator dependencies
     sudo apt-get -y install \
