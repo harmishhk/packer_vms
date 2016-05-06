@@ -37,7 +37,7 @@ fi
 # install docker
 echo "==> installing docker engine" 2>&1 | tee -a $LOGFILE
 sudo apt-get update
-sudo apt-get -y install docker-engine
+sudo apt-get -y install docker-engine wget
 sudo service docker start
 
 # create docker group
@@ -56,3 +56,7 @@ sudo update-grub
 if [[ "$UBUNTU_MAJOR_VERSION" -gt "14" ]]; then
     sudo systemctl enable docker
 fi
+
+# install docker-machine
+sudo wget -O /usr/local/bin/docker-machine https://github.com/docker/machine/releases/download/v0.7.0/docker-machine-$(uname -s)-$(uname -m)
+sudo chmod +x /usr/local/bin/docker-machine
