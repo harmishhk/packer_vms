@@ -38,9 +38,14 @@
                 "scripts/theme.sh",
                 "scripts/docker.sh",
                 "scripts/ros.sh",
-                "scripts/dev.sh",
-                "scripts/summary.sh"
+                "scripts/dev.sh"
             ],
+            "type": "shell",
+            "pause_before": "4s"
+        },
+        {
+            "execute_command": "sed 's/sudo/echo {{ user `ssh_password` }} | sudo -E -S/g' {{.Path}} | {{.Vars}} bash",
+            "script": "scripts/summary.sh",
             "type": "shell",
             "pause_before": "4s"
         }
