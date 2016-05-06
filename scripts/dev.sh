@@ -22,7 +22,7 @@ ln -s /mnt/work_vdisk/work /home/$SSH_USERNAME/work
 ln -s /home/$SSH_USERNAME/work/ros /home/$SSH_USERNAME/ros
 ln -s /home/$SSH_USERNAME/work/writing /home/$SSH_USERNAME/writing
 
-#enable user-namespace remapping in docker
+# enable user-namespace remapping in docker
 echo "==> enabling user-namespace remapping for docker" 2>&1 | tee -a $LOGFILE
 if [[ "$DOCKER" =~ ^(true|yes|on|1|TRUE|YES|ON])$ ]]; then
     if [[ "$UBUNTU_MAJOR_VERSION" -gt "14" ]]; then
@@ -34,3 +34,10 @@ if [[ "$DOCKER" =~ ^(true|yes|on|1|TRUE|YES|ON])$ ]]; then
     sudo sed -i "s/^$SSH_USERNAME.*/$SSH_USERNAME:$(id -g):65536/" /etc/subuid
     sudo sed -i "s/^$SSH_USERNAME.*/$SSH_USERNAME:$(id -g):65536/" /etc/subgid
 fi
+
+# make eth1 entry to network interfaces
+sudo sh -c "echo 'auto eth1' >> /etc/network/interfaces"
+sudo sh -c "echo 'iface eth1 inet dhcp' >> /etc/network/interfaces"
+
+# password less sudo
+#sudo sh -c "echo '$SSH_USERNAME ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers.d/$SSH_USERNAME"

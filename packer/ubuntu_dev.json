@@ -5,6 +5,7 @@
             "format": "ovf",
             "guest_additions_mode": "disable",
             "headless": "{{ user `headless` }}",
+            "import_opts": "keepallmacs",
             "output_directory": "output/{{ user `vm_name` }}-dev",
             "shutdown_command": "echo '{{ user `ssh_password` }}'|sudo -S shutdown -P now",
             "source_path": "output/{{ user `vm_name` }}/{{ user `vm_name` }}.ovf",

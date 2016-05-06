@@ -68,6 +68,20 @@
                     "modifyvm", "{{.Name}}", "--vram", "{{ user `vram` }}"
                 ]
             ],
+            "vboxmanage_post": [
+                [
+                    "modifyvm", "{{.Name}}", "--bridgeadapter2", "{{ user `bridgeadapter` }}"
+                ],
+                [
+                    "modifyvm", "{{.Name}}", "--macaddress2", "{{ user `macaddress` }}"
+                ],
+                [
+                    "modifyvm", "{{.Name}}", "--nic2", "bridged"
+                ],
+                [
+                    "modifyvm", "{{.Name}}", "--nictype2", "82540EM"
+                ]
+            ],
             "virtualbox_version_file": ".vbox_version",
             "vm_name": "{{user `vm_name`}}"
         }
@@ -99,6 +113,7 @@
     ],
     "variables": {
         "accelerate3d": "on",
+        "bridgeadapter": "none",
         "clipboard": "bidirectional",
         "cpus": "1",
         "custom_script": ".",
@@ -113,6 +128,7 @@
         "iso_name": "ubuntu-15.10-desktop-amd64.iso",
         "iso_path": ".",
         "iso_url": "http://releases.ubuntu.com/15.10/ubuntu-15.10-desktop-amd64.iso",
+        "macaddress": "auto",
         "memory": "2048",
         "preseed" : "preseed.cfg",
         "ssh_fullname": "ubuntu",
