@@ -5,13 +5,33 @@
             "format": "ovf",
             "guest_additions_mode": "disable",
             "headless": "{{ user `headless` }}",
-            "import_opts": "keepallmacs",
             "output_directory": "output/{{ user `vm_name` }}-dev",
             "shutdown_command": "echo '{{ user `ssh_password` }}'|sudo -S shutdown -P now",
+            "shutdown_timeout": "1m",
             "source_path": "output/{{ user `vm_name` }}/{{ user `vm_name` }}.ovf",
             "ssh_password": "{{ user `ssh_password` }}",
             "ssh_username": "{{ user `ssh_username` }}",
             "type": "virtualbox-ovf",
+            "vboxmanage_post": [
+                [
+                    "modifyvm", "{{.Name}}", "--bridgeadapter1", "{{ user `bridgeadapter` }}"
+                ],
+                [
+                    "modifyvm", "{{.Name}}", "--macaddress1", "{{ user `macaddress` }}"
+                ],
+                [
+                    "modifyvm", "{{.Name}}", "--natpf2", "ssh,tcp,,{{ user `ssh_port` }},,22"
+                ],
+                [
+                    "modifyvm", "{{.Name}}", "--nic1", "bridged"
+                ],
+                [
+                    "modifyvm", "{{.Name}}", "--nic2", "nat"
+                ],
+                [
+                    "modifyvm", "{{.Name}}", "--nictype1", "82540EM"
+                ]
+            ],
             "vm_name": "{{user `vm_name`}}"
         }
     ],
@@ -54,12 +74,14 @@
     "variables": {
         "atom_sync_settings_gist_id": "",
         "atom_sync_settings_personal_access_token": "",
+        "bridgeadapter": "none",
         "dev": "true",
         "docker": "false",
         "gazebo": "false",
         "headless": "true",
         "hostname": "ubuntu",
         "i3wm": "true",
+        "macaddress": "auto",
         "ros": "false",
         "ros_version": "indigo",
         "spencer": "false",

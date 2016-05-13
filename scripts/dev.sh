@@ -35,9 +35,5 @@ if [[ "$DOCKER" =~ ^(true|yes|on|1|TRUE|YES|ON])$ ]]; then
     sudo sed -i "s/^$SSH_USERNAME.*/$SSH_USERNAME:$(id -g):65536/" /etc/subgid
 fi
 
-# make eth1 entry to network interfaces
-sudo sh -c "echo 'auto eth1' >> /etc/network/interfaces"
-sudo sh -c "echo 'iface eth1 inet dhcp' >> /etc/network/interfaces"
-
 # password less sudo
 #sudo sh -c "echo '$SSH_USERNAME ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers.d/$SSH_USERNAME"
