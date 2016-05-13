@@ -10,6 +10,10 @@ fi
 
 # install i3 window manager
 echo "==> installing i3 window manager" 2>&1 | tee -a $LOGFILE
+sudo sh -c "echo 'deb http://debian.sur5r.net/i3/ $(lsb_release -c -s) universe' >> /etc/apt/sources.list.d/i3.list"
+sudo apt-get update
+sudo apt-get --allow-unauthenticated install sur5r-keyring
+sudo apt-get update
 sudo apt-get -y install i3
 I3_LIGHTDM_CONF=/etc/lightdm/lightdm.conf.d/50-i3.conf
 sudo mkdir -p $(dirname $I3_LIGHTDM_CONF)
