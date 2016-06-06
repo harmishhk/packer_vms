@@ -52,7 +52,7 @@
                 "THEME={{user `theme`}}",
                 "TOOLS={{user `tools`}}"
             ],
-            "execute_command": "sed 's/sudo/echo {{ user `ssh_password` }} | sudo -E -S/g' {{.Path}} | {{.Vars}} bash",
+            "execute_command": "sed 's/sudo[[:space:]]/echo {{ user `ssh_password` }} | sudo -E -S /g' {{.Path}} | {{.Vars}} bash",
             "scripts": [
                 "scripts/tools.sh",
                 "scripts/i3.sh",

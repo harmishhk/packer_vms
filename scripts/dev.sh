@@ -35,8 +35,11 @@ if [[ "$DOCKER" =~ ^(true|yes|on|1|TRUE|YES|ON])$ ]]; then
     sudo sed -i "s/^$SSH_USERNAME.*/$SSH_USERNAME:$(id -g):65536/" /etc/subgid
 fi
 
-# password less sudo
-#sudo sh -c "echo '$SSH_USERNAME ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers.d/$SSH_USERNAME"
+# password less sudo-ing
+echo "==> enabling password-less sudo-ing" 2>&1 | tee -a $LOGFILE
+sudo mkdir -p /etc/sudoers.d
+sudo touch /etc/sudoers.d/$SSH_USERNAME
+sudo sh -c "echo '$SSH_USERNAME ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers.d/$SSH_USERNAME"
 
 # install image tools
 echo "==> installing image and additional tools" 2>&1 | tee -a $LOGFILE
