@@ -5,6 +5,5 @@
     "iso_name": "ubuntu-15.10-server-amd64.iso",
     "iso_url": "http://releases.ubuntu.com/15.10/ubuntu-15.10-server-amd64.iso",
     "ros": "false",
-    "ros_version": "jade",
     "vm_name": "ubuntu1510-desktop"
 }
