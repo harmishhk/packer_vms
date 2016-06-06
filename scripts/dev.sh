@@ -38,6 +38,10 @@ fi
 # password less sudo
 #sudo sh -c "echo '$SSH_USERNAME ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers.d/$SSH_USERNAME"
 
+# install image tools
+echo "==> installing image and additional tools" 2>&1 | tee -a $LOGFILE
+sudo apt-get -y install chrony firefox gimp inkscape
+
 # showing summary of installations
 echo -e "\n\nsummary of installed tools" 2>&1
 /bin/cat "$LOGFILE" 2>&1

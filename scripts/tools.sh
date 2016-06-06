@@ -38,10 +38,6 @@ echo "==> installing visual studio code editor" 2>&1 | tee -a $LOGFILE
 wget -O /tmp/vscode.deb "https://go.microsoft.com/fwlink/?LinkID=760868"
 sudo gdebi -n /tmp/vscode.deb
 
-# install image tools
-echo "==> installing image tools" 2>&1 | tee -a $LOGFILE
-sudo apt-get -y install gimp inkscape
-
 # install and setup zsh
 echo "==> installing and setting-up z-shell" 2>&1 | tee -a $LOGFILE
 sudo apt-get -y install zsh
