@@ -84,12 +84,6 @@
             ],
             "type": "shell",
             "pause_before": "4s"
-        },
-        {
-            "execute_command": "sed 's/sudo/echo {{ user `ssh_password` }} | sudo -E -S/g' {{.Path}} | {{.Vars}} bash",
-            "script": "scripts/summary.sh",
-            "type": "shell",
-            "pause_before": "4s"
         }
     ],
     "variables": {

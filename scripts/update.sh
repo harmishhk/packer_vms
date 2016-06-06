@@ -1,6 +1,6 @@
 #!/bin/bash -eux
 
-LOGFILE=$HOME/summary.txt
+LOGFILE=/tmp/commands.txt
 touch $LOGFILE
 
 echo "==> disabling the release upgrader" 2>&1 | tee -a $LOGFILE

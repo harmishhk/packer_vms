@@ -1,6 +1,6 @@
 #!/bin/bash -eux
 
-LOGFILE=$HOME/summary.txt
+LOGFILE=/tmp/commands.txt
 touch $LOGFILE
 
 if [[ ! "$I3WM" =~ ^(true|yes|on|1|TRUE|YES|ON])$ ]]; then

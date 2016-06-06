@@ -1,6 +1,6 @@
 #!/bin/bash -eux
 
-LOGFILE=$HOME/summary.txt
+LOGFILE=/tmp/commands.txt
 touch $LOGFILE
 
 if [[ ! "$DEV" =~ ^(true|yes|on|1|TRUE|YES|ON])$ ]]; then
@@ -37,3 +37,8 @@ fi
 
 # password less sudo
 #sudo sh -c "echo '$SSH_USERNAME ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers.d/$SSH_USERNAME"
+
+# showing summary of installations
+echo -e "\n\nsummary of installed tools" 2>&1
+/bin/cat "$LOGFILE" 2>&1
+echo -e "--------------------------\n\n" 2>&1
