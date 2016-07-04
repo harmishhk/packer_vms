@@ -10,7 +10,7 @@ fi
 
 # install basic tools
 echo "==> installing basic tools" 2>&1 | tee -a $LOGFILE
-sudo apt-get -y install htop roxterm tmux tree vim wget curl gdebi
+sudo apt-get -y install htop roxterm tmux tree vim wget curl gdebi gdb
 
 # install git and git-lfs
 echo "==> installing git and related tools" 2>&1 | tee -a $LOGFILE
@@ -33,10 +33,12 @@ echo "    _analyticsUserId: \"AnonymousId\"" >> /home/$SSH_USERNAME/.atom/config
 echo "    personalAccessToken: \""$ATOM_SYNC_SETTINGS_PERSONAL_ACCESS_TOKEN"\"" >> /home/$SSH_USERNAME/.atom/config.cson
 echo "    gistId: \""$ATOM_SYNC_SETTINGS_GIST_ID"\"" >> /home/$SSH_USERNAME/.atom/config.cson
 
-# install vs-code
-echo "==> installing visual studio code editor" 2>&1 | tee -a $LOGFILE
+# install vs-code and extensions
+echo "==> installing visual studio code editor and extensions" 2>&1 | tee -a $LOGFILE
 wget -O /tmp/vscode.deb "https://go.microsoft.com/fwlink/?LinkID=760868"
 sudo gdebi -n /tmp/vscode.deb
+git clone https://gist.github.com/harmishhk/$CODE_EXTS_GIST_ID /tmp/vscode_exts_gist
+bash /tmp/vscode_exts_gist/vscode.sh
 
 # install and setup zsh
 echo "==> installing and setting-up z-shell" 2>&1 | tee -a $LOGFILE
