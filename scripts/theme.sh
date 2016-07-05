@@ -43,19 +43,17 @@ git clone https://github.com/harmishhk/bing-wallpaper /home/$SSH_USERNAME/softwa
 sh /home/$SSH_USERNAME/software/bing-wallpaper/setup.sh /home/$SSH_USERNAME/software/bing-wallpaper
 echo "/home/$SSH_USERNAME/software/bing-wallpaper/bing-wallpaper.sh 2>&1 > /dev/null" >> /home/$SSH_USERNAME/.xprofile
 
-# terminal emulator
-echo "==> setting-up terminal emulator theme" 2>&1 | tee -a $LOGFILE
-ROXTERM_PROFILE=/home/$SSH_USERNAME/.config/roxterm.sourceforge.net/Profiles/Default
-mkdir -p $(dirname $ROXTERM_PROFILE)
-echo "[roxterm profile]" >> $ROXTERM_PROFILE
-echo "colour_scheme=Tango" >> $ROXTERM_PROFILE
-echo "font=Inconsolata Medium 12" >> $ROXTERM_PROFILE
-echo "always_show_tabs=0" >> $ROXTERM_PROFILE
-echo "hide_menubar=1" >> $ROXTERM_PROFILE
-echo "show_resize_grip=1" >> $ROXTERM_PROFILE
-echo "win_title=Terminal" >> $ROXTERM_PROFILE
-echo "background_type=0" >> $ROXTERM_PROFILE
-echo "saturation=1.000000" >> $ROXTERM_PROFILE
-echo "login_shell=1" >> $ROXTERM_PROFILE
-echo "scroll_on_keystroke=1" >> $ROXTERM_PROFILE
-echo "scrollbar_pos=0" >> $ROXTERM_PROFILE
+# terminal theming
+echo "==> setting-up terminal theme" 2>&1 | tee -a $LOGFIL
+sudo apt-get -y install git gnome-terminal wget
+wget -O /home/$SSH_USERNAME/.Xresources https://raw.githubusercontent.com/chriskempson/base16-xresources/master/base16-tomorrow.dark.xresources
+git clone https://github.com/chriskempson/base16-gnome-terminal.git /home/$SSH_USERNAME/.config/base16-gnome-terminal
+source /home/$SSH_USERNAME/.config/base16-gnome-terminal/base16-tomorrow.dark.sh
+gconftool --set --type bool /apps/gnome-terminal/profiles/base-16-tomorrow-dark/scrollback_unlimited -- true
+gconftool --set --type bool /apps/gnome-terminal/profiles/base-16-tomorrow-dark/default_show_menubar -- false
+gconftool --set --type bool /apps/gnome-terminal/profiles/base-16-tomorrow-dark/login_shell -- true
+gconftool --set --type string /apps/gnome-terminal/profiles/base-16-tomorrow-dark/title_mode -- "ignore"
+gconftool --set --type string /apps/gnome-terminal/profiles/base-16-tomorrow-dark/scrollbar_position -- "hidden"
+gconftool --set --type bool /apps/gnome-terminal/profiles/base-16-tomorrow-dark/use_system_font -- false
+gconftool --set --type string /apps/gnome-terminal/profiles/base-16-tomorrow-dark/font -- "Inconsolata Medium 12"
+gconftool --set --type string /apps/gnome-terminal/global/default_profile -- "base-16-tomorrow-dark"

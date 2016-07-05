@@ -40,6 +40,7 @@
             "environment_vars": [
                 "ATOM_SYNC_SETTINGS_GIST_ID={{user `atom_sync_settings_gist_id`}}",
                 "ATOM_SYNC_SETTINGS_PERSONAL_ACCESS_TOKEN={{user `atom_sync_settings_personal_access_token`}}",
+                "CODE_EXTS_GIST_ID={{user `code_exts_gist_id`}}",
                 "DEV={{user `dev`}}",
                 "DOCKER={{user `docker`}}",
                 "GAZEBO={{user `gazebo`}}",
@@ -69,6 +70,7 @@
         "atom_sync_settings_gist_id": "",
         "atom_sync_settings_personal_access_token": "",
         "bridgeadapter": "none",
+        "code_exts_gist_id": "",
         "dev": "true",
         "docker": "false",
         "gazebo": "false",

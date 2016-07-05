@@ -10,7 +10,7 @@ fi
 
 # install basic tools
 echo "==> installing basic tools" 2>&1 | tee -a $LOGFILE
-sudo apt-get -y install htop roxterm tmux tree vim wget curl gdebi gdb
+sudo apt-get -y install htop tmux tree vim wget curl gdebi gdb
 
 # install git and git-lfs
 echo "==> installing git and related tools" 2>&1 | tee -a $LOGFILE
@@ -38,6 +38,8 @@ echo "==> installing visual studio code editor and extensions" 2>&1 | tee -a $LO
 wget -O /tmp/vscode.deb "https://go.microsoft.com/fwlink/?LinkID=760868"
 sudo gdebi -n /tmp/vscode.deb
 git clone https://gist.github.com/harmishhk/$CODE_EXTS_GIST_ID /tmp/vscode_exts_gist
+mkdir -p /home/$SSH_USERNAME/.config/Code/User
+mkdir -p /home/$SSH_USERNAME/.vscode/extensions
 bash /tmp/vscode_exts_gist/vscode.sh
 
 # install and setup zsh
