@@ -10,7 +10,7 @@ fi
 
 # install basic tools
 echo "==> installing basic tools" 2>&1 | tee -a $LOGFILE
-sudo apt-get -y install htop tmux tree vim wget curl gdebi gdb
+sudo apt-get -y install htop tmux tree vim wget curl gdebi gdb llvm-3.6-dev clang-3.6 clang-format-3.6
 
 # install git and git-lfs
 echo "==> installing git and related tools" 2>&1 | tee -a $LOGFILE
