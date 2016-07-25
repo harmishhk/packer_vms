@@ -12,9 +12,20 @@
             "ssh_password": "{{ user `ssh_password` }}",
             "ssh_username": "{{ user `ssh_username` }}",
             "type": "virtualbox-ovf",
+            "vboxmanage": [
+                [
+                    "modifyvm", "{{.Name}}", "--cableconnected1", "on"
+                ]
+            ],
             "vboxmanage_post": [
                 [
                     "modifyvm", "{{.Name}}", "--bridgeadapter1", "{{ user `bridgeadapter` }}"
+                ],
+                [
+                    "modifyvm", "{{.Name}}", "--cableconnected1", "on"
+                ],
+                [
+                    "modifyvm", "{{.Name}}", "--cableconnected2", "off"
                 ],
                 [
                     "modifyvm", "{{.Name}}", "--macaddress1", "{{ user `macaddress` }}"
@@ -79,7 +90,7 @@
         "i3wm": "true",
         "macaddress": "auto",
         "ros": "false",
-        "ros_version": "indigo",
+        "ros_version": "kinetic",
         "spencer": "false",
         "ssh_fullname": "ubuntu",
         "ssh_password": "ubuntu",
@@ -88,6 +99,6 @@
         "theme": "true",
         "tools": "true",
         "version": "",
-        "vm_name": "ubuntu1510-desktop"
+        "vm_name": "ubuntu1604-desktop"
     }
 }

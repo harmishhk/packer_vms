@@ -63,6 +63,32 @@
                     "modifyvm", "{{.Name}}", "--vram", "{{ user `vram` }}"
                 ]
             ],
+            "vboxmanage_post": [
+                [
+                    "modifyvm", "{{.Name}}", "--bridgeadapter1", "{{ user `bridgeadapter` }}"
+                ],
+                [
+                    "modifyvm", "{{.Name}}", "--cableconnected1", "on"
+                ],
+                [
+                    "modifyvm", "{{.Name}}", "--cableconnected2", "on"
+                ],
+                [
+                    "modifyvm", "{{.Name}}", "--macaddress1", "{{ user `macaddress` }}"
+                ],
+                [
+                    "modifyvm", "{{.Name}}", "--natpf2", "ssh,tcp,,{{ user `ssh_port` }},,22"
+                ],
+                [
+                    "modifyvm", "{{.Name}}", "--nic1", "bridged"
+                ],
+                [
+                    "modifyvm", "{{.Name}}", "--nic2", "nat"
+                ],
+                [
+                    "modifyvm", "{{.Name}}", "--nictype1", "82540EM"
+                ]
+            ],
             "virtualbox_version_file": ".vbox_version",
             "vm_name": "{{user `vm_name`}}"
         }
@@ -84,29 +110,73 @@
             ],
             "type": "shell",
             "pause_before": "4s"
+        },
+        {
+            "environment_vars": [
+                "ATOM_SYNC_SETTINGS_GIST_ID={{user `atom_sync_settings_gist_id`}}",
+                "ATOM_SYNC_SETTINGS_PERSONAL_ACCESS_TOKEN={{user `atom_sync_settings_personal_access_token`}}",
+                "CODE_EXTS_GIST_ID={{user `code_exts_gist_id`}}",
+                "DEV={{user `dev`}}",
+                "DOCKER={{user `docker`}}",
+                "GAZEBO={{user `gazebo`}}",
+                "I3WM={{user `i3wm`}}",
+                "ROS={{user `ros`}}",
+                "ROS_VERSION={{user `ros_version`}}",
+                "SPENCER={{user `spencer`}}",
+                "SSH_USERNAME={{user `ssh_username`}}",
+                "SSH_PASSWORD={{user `ssh_password`}}",
+                "THEME={{user `theme`}}",
+                "TOOLS={{user `tools`}}"
+            ],
+            "execute_command": "sed 's/sudo[[:space:]]/echo {{ user `ssh_password` }} | sudo -E -S /g' {{.Path}} | {{.Vars}} bash",
+            "scripts": [
+                "scripts/tools.sh",
+                "scripts/i3.sh",
+                "scripts/theme.sh",
+                "scripts/docker.sh",
+                "scripts/ros.sh",
+                "scripts/dev.sh"
+            ],
+            "type": "shell",
+            "pause_before": "4s"
         }
     ],
     "variables": {
         "accelerate3d": "off",
+        "atom_sync_settings_gist_id": "",
+        "atom_sync_settings_personal_access_token": "",
+        "bridgeadapter": "none",
+        "code_exts_gist_id": "",
         "clipboard": "bidirectional",
         "cpus": "1",
         "custom_script": ".",
         "desktop": "true",
+        "dev": "true",
         "disk_size": "49152",
+        "docker": "false",
         "draganddrop": "bidirectional",
+        "gazebo": "false",
         "guest_additions": "true",
         "headless": "true",
         "hostname": "ubuntu",
+        "i3wm": "true",
         "iso_checksum": "23e97cd5d4145d4105fbf29878534049",
         "iso_checksum_type": "md5",
         "iso_name": "ubuntu-16.04-server-amd64.iso",
         "iso_path": ".",
         "iso_url": "http://releases.ubuntu.com/16.04/ubuntu-16.04-server-amd64.iso",
+        "macaddress": "auto",
         "memory": "2048",
         "preseed" : "preseed.cfg",
+        "ros": "false",
+        "ros_version": "kinetic",
+        "spencer": "false",
         "ssh_fullname": "ubuntu",
         "ssh_password": "ubuntu",
+        "ssh_port": "3022",
         "ssh_username": "ubuntu",
+        "theme": "true",
+        "tools": "true",
         "update": "true",
         "version": "",
         "virtualbox_guest_os_type": "Ubuntu_64",

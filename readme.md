@@ -1,19 +1,19 @@
-# create ubuntu boxes with packer
-templates for generating ubuntu desktop boxes. this is a fork of [flomotlik/packer-example][1], and highly adapted from [boxcutter/ubuntu][2], removing the non essentials.
+# Create ubuntu boxes with packer
+Templates for generating ubuntu desktop boxes. this is a fork of [flomotlik/packer-example][1], and highly adapted from [boxcutter/ubuntu][2], removing the non essentials.
 
-specs for vm:
+Specs for vm:
 
-* 8092MB RAM and 2 CPUs
-* 40GB disk size
+* 2048MB RAM and 1 CPU
+* 50GB disk size
 * 256MB of vram
 
-# create box
+# Build
 ```
-packer build -var-file=ubuntu_1504_desktop.json ubuntu.json
+packer build -var-file=ubuntu_1604.json ubuntu.json
 ```
-to install the dev for dev packages run following command after creating the desktop output
+To install the dev for dev packages run following command after creating the desktop output:
 ```
-packer build -var-file=ubuntu_1504_desktop.json ubuntu_dev.json
+packer build -var-file=ubuntu_1604.json ubuntu_dev.json
 ```
 
 [1]: https://github.com/flomotlik/packer-example
