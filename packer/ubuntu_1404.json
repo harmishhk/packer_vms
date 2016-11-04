@@ -1,9 +1,9 @@
 {
     "_comment": "build with `packer build -var-file=ubuntu_1404.json ubuntu.json`",
     "docker": "true",
-    "iso_checksum": "2ac1f3e0de626e54d05065d6f549fa3a",
-    "iso_name": "ubuntu-14.04.4-server-amd64.iso",
-    "iso_url": "http://releases.ubuntu.com/14.04/ubuntu-14.04.4-server-amd64.iso",
+    "iso_checksum": "dd54dc8cfc2a655053d19813c2f9aa9f",
+    "iso_name": "ubuntu-14.04.5-server-amd64.iso",
+    "iso_url": "http://releases.ubuntu.com/14.04/ubuntu-14.04.5-server-amd64.iso",
     "ros": "true",
     "ros_version": "indigo",
     "vm_name": "ubuntu1404-desktop"

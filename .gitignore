@@ -1,3 +1,4 @@
-packer_cache/*
-output/*
-.packer/*
+packer_cache
+output
+.packer
+.vscode
