@@ -20,6 +20,8 @@ sudo apt-get -y install \
 ros-$ROS_VERSION-desktop \
 ros-$ROS_VERSION-perception \
 ros-$ROS_VERSION-navigation \
+ros-$ROS_VERSION-joy \
+ros-$ROS_VERSION-teleop-twist-joy \
 python-catkin-tools
 
 ## setup rosdep

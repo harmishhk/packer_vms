@@ -38,7 +38,7 @@ echo "gsettings set org.gnome.settings-daemon.plugins.cursor active false" >> /h
 
 # wallpaper
 echo "==> setting-up bing wallpaper" 2>&1 | tee -a $LOGFILE
-sudo apt-get -y install curl nitrogen gawk
+sudo apt-get -y install curl feh gawk
 git clone https://github.com/harmishhk/bing-wallpaper /home/$SSH_USERNAME/software/bing-wallpaper
 sh /home/$SSH_USERNAME/software/bing-wallpaper/setup.sh /home/$SSH_USERNAME/software/bing-wallpaper
 echo "/home/$SSH_USERNAME/software/bing-wallpaper/bing-wallpaper.sh 2>&1 > /dev/null" >> /home/$SSH_USERNAME/.xprofile
