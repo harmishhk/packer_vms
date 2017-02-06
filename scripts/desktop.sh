@@ -9,7 +9,7 @@ if [[ ! "$DESKTOP" =~ ^(true|yes|on|1|TRUE|YES|ON)$ ]]; then
 fi
 
 echo "==> installing ubunutu-desktop (this may take a long time)" 2>&1 | tee -a $LOGFILE
-sudo apt-get -y install --no-install-recommends ubuntu-desktop
+sudo apt-get -y install ubuntu-desktop
 
 echo "==> setting-up automatic login" 2>&1 | tee -a $LOGFILE
 LIGHTDM_CUSTOM_CONF=/etc/lightdm/lightdm.conf
