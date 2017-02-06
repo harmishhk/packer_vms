@@ -3,7 +3,7 @@
 LOGFILE=/tmp/commands.txt
 touch $LOGFILE
 
-if [[ ! "$THEME" =~ ^(true|yes|on|1|TRUE|YES|ON])$ ]]; then
+if [[ ! "$THEME" =~ ^(true|yes|on|1|TRUE|YES|ON)$ ]]; then
     echo "==> theming is disabled" 2>&1 | tee -a $LOGFILE
     exit
 fi

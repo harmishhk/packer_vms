@@ -6,7 +6,7 @@ touch $LOGFILE
 echo "==> disabling the release upgrader" 2>&1 | tee -a $LOGFILE
 sudo sed -i.bak 's/^Prompt=.*$/Prompt=never/' /etc/update-manager/release-upgrades
 
-if [[ ! "$UPDATE" =~ ^(true|yes|on|1|TRUE|YES|ON])$ ]]; then
+if [[ ! "$UPDATE" =~ ^(true|yes|on|1|TRUE|YES|ON)$ ]]; then
     echo "==> updating is disabled" 2>&1 | tee -a $LOGFILE
     exit
 fi

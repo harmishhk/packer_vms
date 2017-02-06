@@ -3,7 +3,7 @@
 LOGFILE=/tmp/commands.txt
 touch $LOGFILE
 
-if [[ ! "$DESKTOP" =~ ^(true|yes|on|1|TRUE|YES|ON])$ ]]; then
+if [[ ! "$DESKTOP" =~ ^(true|yes|on|1|TRUE|YES|ON)$ ]]; then
     echo "==> ubuntu-desktop installation is disabled" 2>&1 | tee -a $LOGFILE
     exit
 fi

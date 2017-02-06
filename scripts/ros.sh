@@ -3,7 +3,7 @@
 LOGFILE=/tmp/commands.txt
 touch $LOGFILE
 
-if [[ ! "$ROS" =~ ^(true|yes|on|1|TRUE|YES|ON])$ ]]; then
+if [[ ! "$ROS" =~ ^(true|yes|on|1|TRUE|YES|ON)$ ]]; then
     echo "==> ros installation is disabled" 2>&1 | tee -a $LOGFILE
     exit
 fi
@@ -28,7 +28,7 @@ python-catkin-tools
 sudo rosdep init
 rosdep update
 
-if [[ ! "$SPENCER" =~ ^(true|yes|on|1|TRUE|YES|ON])$ ]]; then
+if [[ ! "$SPENCER" =~ ^(true|yes|on|1|TRUE|YES|ON)$ ]]; then
     echo "==> ros-spencer installation is disabled" 2>&1 | tee -a $LOGFILE
 else
     echo "==> installing spencer related packages for ros $ROS_VERSION" 2>&1 | tee -a $LOGFILE
@@ -49,7 +49,7 @@ else
     ros-$ROS_VERSION-yocs-cmd-vel-mux
 fi
 
-if [[ ! "$GAZEBO" =~ ^(true|yes|on|1|TRUE|YES|ON])$ ]]; then
+if [[ ! "$GAZEBO" =~ ^(true|yes|on|1|TRUE|YES|ON)$ ]]; then
     echo "==> ros-gazebo installation is disabled" 2>&1 | tee -a $LOGFILE
 else
     echo "==> installing gazebo and related packages for ros $ROS_VERSION" 2>&1 | tee -a $LOGFILE

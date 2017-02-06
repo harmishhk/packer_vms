@@ -3,7 +3,7 @@
 LOGFILE=/tmp/commands.txt
 touch $LOGFILE
 
-if [[ ! "$I3WM" =~ ^(true|yes|on|1|TRUE|YES|ON])$ ]]; then
+if [[ ! "$I3WM" =~ ^(true|yes|on|1|TRUE|YES|ON)$ ]]; then
     echo "==> i3wm installation is disabled" 2>&1 | tee -a $LOGFILE
     exit
 fi

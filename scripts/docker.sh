@@ -3,7 +3,7 @@
 LOGFILE=/tmp/commands.txt
 touch $LOGFILE
 
-if [[ ! "$DOCKER" =~ ^(true|yes|on|1|TRUE|YES|ON])$ ]]; then
+if [[ ! "$DOCKER" =~ ^(true|yes|on|1|TRUE|YES|ON)$ ]]; then
     echo "==> docker installation is disabled" 2>&1 | tee -a $LOGFILE
     exit
 fi

@@ -3,7 +3,7 @@
 LOGFILE=/tmp/commands.txt
 touch $LOGFILE
 
-if [[ ! "$GUEST_ADDITIONS" =~ ^(true|yes|on|1|TRUE|YES|ON])$ ]]; then
+if [[ ! "$GUEST_ADDITIONS" =~ ^(true|yes|on|1|TRUE|YES|ON)$ ]]; then
     echo "==> installation of guest additions is disabled" 2>&1 | tee -a $LOGFILE
     exit
 fi

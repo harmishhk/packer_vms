@@ -3,7 +3,7 @@
 LOGFILE=/tmp/commands.txt
 touch $LOGFILE
 
-if [[ ! "$DEV" =~ ^(true|yes|on|1|TRUE|YES|ON])$ ]]; then
+if [[ ! "$DEV" =~ ^(true|yes|on|1|TRUE|YES|ON)$ ]]; then
     echo "==> dotfiles installation is disabled" 2>&1 | tee -a $LOGFILE
     exit
 fi
@@ -24,7 +24,7 @@ ln -s /home/$SSH_USERNAME/work/writing /home/$SSH_USERNAME/writing
 
 # enable user-namespace remapping in docker
 echo "==> enabling user-namespace remapping for docker" 2>&1 | tee -a $LOGFILE
-if [[ "$DOCKER" =~ ^(true|yes|on|1|TRUE|YES|ON])$ ]]; then
+if [[ "$DOCKER" =~ ^(true|yes|on|1|TRUE|YES|ON)$ ]]; then
     if [[ "$UBUNTU_MAJOR_VERSION" -gt "14" ]]; then
         sudo cp /lib/systemd/system/docker.service /etc/systemd/system/
         sudo sed -i "/^ExecStart/ s/$/ --userns-remap=$SSH_USERNAME/" /etc/systemd/system/docker.service
