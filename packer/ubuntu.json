@@ -80,6 +80,7 @@
             "scripts": [
                 "scripts/update.sh",
                 "scripts/desktop.sh",
+                "scripts/hyperv.sh",
                 "scripts/virtualbox.sh"
             ],
             "type": "shell",
@@ -97,11 +98,12 @@
         "guest_additions": "true",
         "headless": "true",
         "hostname": "ubuntu",
-        "iso_checksum": "d2d939ca0e65816790375f6826e4032f",
+        "hyperv": "false",
+        "iso_checksum": "2bce60d18248df9980612619ff0b34e6",
         "iso_checksum_type": "md5",
-        "iso_name": "ubuntu-16.04.1-server-amd64.iso",
+        "iso_name": "ubuntu-16.04.2-server-amd64.iso",
         "iso_path": ".",
-        "iso_url": "http://releases.ubuntu.com/16.04/ubuntu-16.04.1-server-amd64.iso",
+        "iso_url": "http://releases.ubuntu.com/16.04/ubuntu-16.04.2-server-amd64.iso",
         "memory": "2048",
         "preseed" : "preseed.cfg",
         "ssh_fullname": "ubuntu",

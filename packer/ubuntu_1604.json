@@ -1,9 +1,9 @@
 {
     "_comment": "build with `packer build -var-file=ubuntu_1604.json ubuntu.json`",
     "docker": "true",
-    "iso_checksum": "d2d939ca0e65816790375f6826e4032f",
-    "iso_name": "ubuntu-16.04.1-server-amd64.iso",
-    "iso_url": "http://releases.ubuntu.com/16.04/ubuntu-16.04.1-server-amd64.iso",
+    "iso_checksum": "2bce60d18248df9980612619ff0b34e6",
+    "iso_name": "ubuntu-16.04.2-server-amd64.iso",
+    "iso_url": "http://releases.ubuntu.com/16.04/ubuntu-16.04.2-server-amd64.iso",
     "ros": "true",
     "ros_version": "kinetic",
     "vm_name": "ubuntu1604-desktop"
