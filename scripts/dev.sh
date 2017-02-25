@@ -43,9 +43,15 @@ sudo sh -c "echo '$SSH_USERNAME ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers.d/$SSH_
 
 # install image tools
 echo "==> installing image and additional tools" 2>&1 | tee -a $LOGFILE
-sudo apt-get -y install chrony firefox gimp inkscape
+sudo apt-get -y install chrony firefox geeqie gimp inkscape
 
 # showing summary of installations
 echo -e "\n\nsummary of installed tools" 2>&1
 /bin/cat "$LOGFILE" 2>&1
 echo -e "--------------------------\n\n" 2>&1
+
+# workaround for networking bug with systemd
+if [[ "$UBUNTU_MAJOR_VERSION" -gt "15" ]]; then
+    sudo sed -i "s/timeout=[0-9]*/timeout=1/g" /lib/systemd/system/NetworkManager-wait-online.service
+    sudo sed -i "/TimeoutStartSec/c\TimeoutStartSec=1sec" /lib/systemd/system/networking.service
+fi
